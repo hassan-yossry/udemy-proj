@@ -1,7 +1,8 @@
 import {
   validateImageName,
   initMaps,
-  validateHeightWidth
+  validateHeightWidth,
+  transform
 } from '../routes/api/utilities';
 import fs from 'fs';
 import path from 'path';
@@ -45,3 +46,9 @@ describe('this is a test for helper for validateHeightWidth', () => {
     );
   });
 });
+
+describe('test transform resolve/reject',()=>{
+    it('the transform should be resolved',async ()=>{
+        expectAsync(transform(path.join(__dirname,'../../images','fjord.jpg'),path.join(__dirname,'../../images','test.jpg'),200,400)).toBeResolved()
+    })
+})

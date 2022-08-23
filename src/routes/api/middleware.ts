@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import path from 'path';
-import sharp from 'sharp';
+import { transform } from './utilities';
 import {
   validateImageName,
   validateHeightWidth,
@@ -66,7 +66,7 @@ export const resizeUpdateCache = async (
   );
 
   try {
-    await sharp(input).jpeg().resize(wval, hval).toFile(output);
+    await transform(input, output, hval, wval);
     updateCache(val);
     return next();
   } catch (err) {

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import sharp, { OutputInfo } from 'sharp';
 const validImages: { [key: string]: string } = {};
 const cached: { [key: string]: string } = {};
 const updateMapFromFolder = (
@@ -36,4 +37,13 @@ export const isCached = (key: string): boolean => {
 };
 export const updateCache = (val: string): void => {
   cached[val] = val + 'jpg';
+};
+
+export const transform = (
+  inp: string,
+  out: string,
+  h: number,
+  w: number
+): Promise<OutputInfo> => {
+  return sharp(inp).resize(w, h).toFile(out);
 };
