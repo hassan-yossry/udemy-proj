@@ -1,13 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import sharp, { OutputInfo } from 'sharp';
 const validImages: { [key: string]: string } = {};
 const cached: { [key: string]: string } = {};
 const updateMapFromFolder = (
   map: { [key: string]: string },
   folder: string
 ) => {
-  const files = fs.readdirSync(path.join(__dirname, '/../../../', folder));
+  const files = fs.readdirSync(path.join(__dirname, '/../../', folder));
   files.forEach((itm) => {
     map[path.parse(path.normalize(itm)).name] = itm;
   });
@@ -36,14 +35,5 @@ export const isCached = (key: string): boolean => {
   return cached[key] ? true : false;
 };
 export const updateCache = (val: string): void => {
-  cached[val] = val + 'jpg';
-};
-
-export const transform = (
-  inp: string,
-  out: string,
-  h: number,
-  w: number
-): Promise<OutputInfo> => {
-  return sharp(inp).resize(w, h).toFile(out);
+  cached[val] = val + '.jpg';
 };

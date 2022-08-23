@@ -1,5 +1,5 @@
 import express from 'express';
-import { initMaps } from './utilities';
+import { initMaps } from '../../util/helpers';
 import {
   validateReq,
   checkCache,

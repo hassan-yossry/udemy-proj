@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import path from 'path';
-import { transform } from './utilities';
+import { transform } from '../../util/imgProc';
 import {
   validateImageName,
   validateHeightWidth,
   isCached,
   updateCache
-} from './utilities';
+} from '../../util/helpers';
 
 type reqParams = {
   filename: string;
